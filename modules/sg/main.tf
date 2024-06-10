@@ -6,8 +6,8 @@ resource "aws_security_group" "cloudific" {
   ingress = [
     {
       description      = "HTTP"
-      from_port        = 80
-      to_port          = 80
+      from_port        = 3000
+      to_port          = 3000
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       prefix_list_ids  = []
@@ -33,7 +33,7 @@ resource "aws_security_group" "cloudific" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks      = ["102.216.154.26/32"] //Please change to your own IP address for this to work
+      cidr_blocks      = ["102.216.154.26/32"] 
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
       security_groups  = []

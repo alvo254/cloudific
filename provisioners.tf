@@ -7,6 +7,6 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  profile = "alvo"
   region = "us-east-1"
 }
