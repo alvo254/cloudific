@@ -5,6 +5,3 @@ variable "security_group" {
   type = string
 }
 
-variable "" {
-  type = string
-}
