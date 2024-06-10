@@ -47,7 +47,7 @@ resource "aws_ecs_task_definition" "cloudific" {
   container_definitions = jsonencode([
     {
       name      = "app"
-      image     = var.container_image
+      image     = "fitnesshero"
       cpu       = 256
       memory    = 512
       essential = true
