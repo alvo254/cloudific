@@ -61,9 +61,9 @@ jobs:
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
     - name: list dirs
-      run: ls -la
-           ls frontend
-
+      run: | 
+        ls -la
+        ls frontend
 
     - name: Build, tag, and push image to Docker Hub
       env:
