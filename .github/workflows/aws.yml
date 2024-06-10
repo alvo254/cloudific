@@ -31,11 +31,11 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: MY_AWS_REGION                   # set this to your preferred AWS region, e.g., us-west-1
-  DOCKER_USERNAME: MY_DOCKER_USERNAME         # set this to your Docker Hub username
-  DOCKER_REPOSITORY: MY_DOCKER_REPOSITORY     # set this to your Docker Hub repository name
-  ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
+  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g., us-west-1
+  DOCKER_USERNAME: alvin254         # set this to your Docker Hub username
+  DOCKER_REPOSITORY: alvin254/fitnesshero     # set this to your Docker Hub repository name
+  ECS_SERVICE: app-service                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: cloudific                # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition file
   CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in your task definition
 
