@@ -87,8 +87,12 @@ jobs:
     #   run: |
     #     terraform init
     #     terraform apply -auto-approve -var="container_image=${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPOSITORY }}:${{ env.IMAGE_TAG }}"
+    
 
     - name: Apply Terraform
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         terraform init
         terraform apply -auto-approve -var="container_image=${{ env.CONTAINER_IMAGE }}"
