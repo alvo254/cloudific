@@ -36,8 +36,8 @@ env:
   DOCKER_REPOSITORY: alvin254/fitnesshero     # set this to your Docker Hub repository name
   ECS_SERVICE: app-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: cloudific                # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition file
-  CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in your task definition
+  ECS_TASK_DEFINITION: cloudific # set this to the path to your Amazon ECS task definition file
+  CONTAINER_NAME: app           # set this to the name of the container in your task definition
 
 permissions:
   contents: read
