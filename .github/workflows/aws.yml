@@ -31,13 +31,12 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g., us-west-1
-  DOCKER_USERNAME: alvin254         # set this to your Docker Hub username
-  DOCKER_REPOSITORY: alvin254/fitnesshero     # set this to your Docker Hub repository name
-  ECS_SERVICE: app-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: cloudific                # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: cloudific # set this to the path to your Amazon ECS task definition file
-  CONTAINER_NAME: app           # set this to the name of the container in your task definition
+  AWS_REGION: us-east-1
+  DOCKER_USERNAME: alvin254
+  DOCKER_REPOSITORY: alvin254/fitnesshero
+  ECS_SERVICE: app-service
+  ECS_CLUSTER: cloudific
+  CONTAINER_NAME: app
 
 permissions:
   contents: read
@@ -68,19 +67,20 @@ jobs:
       run: |
         docker build -t $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
         docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
-        echo "image=$DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        echo "image=$DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
       with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        container-name: ${{ env.CONTAINER_NAME }}
-        image: $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
+        terraform_version: "1.0.0"  # Specify the Terraform version
 
-    - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
+    - name: Terraform Init and Apply
+      run: |
+        terraform init
+        terraform apply -auto-approve -var="container_image=${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_REPOSITORY }}:${{ env.IMAGE_TAG }}"
+
+    - name: Update ECS Service
+      run: |
+        aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment
+      env:
+        AWS_DEFAULT_REGION: ${{ env.AWS_REGION }}
