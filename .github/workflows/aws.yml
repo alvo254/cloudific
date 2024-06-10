@@ -25,7 +25,6 @@
 #    and best practices on handling the access key credentials.
 
 
-
 name: Deploy to Amazon ECS
 
 on:
@@ -33,12 +32,13 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g., us-west-1
-  DOCKER_USERNAME: alvin254               # set this to your Docker Hub username
-  DOCKER_REPOSITORY: fitnesshero          # set this to your Docker Hub repository name
-  ECS_SERVICE: app-service                # set this to your Amazon ECS service name
-  ECS_CLUSTER: cloudific                  # set this to your Amazon ECS cluster name
-  CONTAINER_NAME: fitnesshero             # set this to the name of the container in your task definition
+  AWS_REGION: us-east-1
+  DOCKER_USERNAME: alvin254
+  DOCKER_REPOSITORY: alvin254/fitnesshero
+  ECS_SERVICE: app-service
+  ECS_CLUSTER: cloudific
+  ECS_TASK_DEFINITION: modules/ecs/container_definitions.yaml
+  CONTAINER_NAME: app
 
 permissions:
   contents: read
@@ -52,23 +52,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.8.5
-
-        
-    - name: Terraform Init
-      run: terraform init
-
-    - name: Terraform Apply
-      id: apply
-      run: terraform apply -auto-approve
-
-    - name: Get ECS Task Definition ARN
-      id: ecs-task-def
-      run: echo "ECS_TASK_DEFINITION=$(terraform output -raw ecs_task_definition_arn)" >> $GITHUB_ENV
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -84,9 +67,9 @@ jobs:
       env:
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG -f frontend/Dockerfile .
-        docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
-        echo "image=$DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        docker build -t $DOCKER_REPOSITORY:$IMAGE_TAG -f frontend/Dockerfile .
+        docker push $DOCKER_REPOSITORY:$IMAGE_TAG
+        echo "image=$DOCKER_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
@@ -94,7 +77,7 @@ jobs:
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
-        image: $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
+        image: $DOCKER_REPOSITORY:$IMAGE_TAG
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1

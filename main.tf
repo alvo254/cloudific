@@ -13,7 +13,7 @@ module "ecs" {
   # container_image = "fitnesshero"
 }
 
-output "ecs_task_definition_arn" {
-  description = "The ARN of the ECS task definition from the module"
-  value       = module.ecs.task_definition_arn
-}
+# output "ecs_task_definition_arn" {
+#   description = "The ARN of the ECS task definition from the module"
+#   value       = module.ecs.task_definition_arn
+# }

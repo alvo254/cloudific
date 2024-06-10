@@ -1,6 +1,7 @@
-variable "container_image" {
-  type = string
-}
+# variable "container_image" {
+#   type = string
+# }
+
 # variable "access_key" {
 #   type = string
 # }
