@@ -4,3 +4,7 @@ variable "pub_sub1" {
 variable "security_group" {
   type = string
 }
+
+variable "" {
+  type = string
+}
