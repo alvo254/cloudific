@@ -37,7 +37,7 @@ env:
   DOCKER_REPOSITORY: alvin254/fitnesshero
   ECS_SERVICE: app-service
   ECS_CLUSTER: cloudific
-  ECS_TASK_DEFINITION: modules/ecs/container_definitions.yaml
+  ECS_TASK_DEFINITION: modules/ecs/container_definitions.json
   CONTAINER_NAME: app
 
 permissions:

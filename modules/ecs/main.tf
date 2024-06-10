@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "cloudific" {
   execution_role_arn    = aws_iam_role.ecs_exec_role.arn
   cpu                      = "256"  // CPU value defined at task level
   memory                   = "512"  // Memory value defined at task level
-  container_definitions = file("${path.module}/container_definitions.yaml")
+  container_definitions = file("${path.module}/container_definitions.json")
 }
 
 resource "aws_ecs_service" "app_service" {
