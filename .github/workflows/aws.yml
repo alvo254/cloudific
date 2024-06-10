@@ -81,7 +81,7 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: "1.0.0"  # Specify the Terraform version
+        terraform_version: "1.8.5"  # Specify the Terraform version
 
     # - name: Terraform Init and Apply
     #   run: |
@@ -90,9 +90,6 @@ jobs:
     
 
     - name: Apply Terraform
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         terraform init
         terraform apply -auto-approve -var="container_image=${{ env.CONTAINER_IMAGE }}"
