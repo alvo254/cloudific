@@ -60,3 +60,28 @@ resource "aws_ecs_service" "app_service" {
     assign_public_ip = true
   }
 }
+
+// {
+//   "family": "app",
+//   "networkMode": "awsvpc",
+//   "requiresCompatibilities": ["FARGATE"],
+//   "executionRoleArn": "arn:aws:iam::your_account_id:role/ecsExecRole",
+//   "cpu": "256",
+//   "memory": "512",
+//   "containerDefinitions": [
+//     {
+//       "name": "app",
+//       "image": "alvin254/fitnesshero",
+//       "cpu": 256,
+//       "memory": 512,
+//       "essential": true,
+//       "portMappings": [
+//         {
+//           "containerPort": 3000,
+//           "hostPort": 3000,
+//           "protocol": "tcp"
+//         }
+//       ]
+//     }
+//   ]
+// }
