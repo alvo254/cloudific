@@ -63,15 +63,16 @@ jobs:
     - name: list dirs
       run: | 
         ls -la
-        ls frontend/ 
+        ls frontend
+ 
 
     - name: Build, tag, and push image to Docker Hub
       env:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG -f frontend/Dockerfile .
-        docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:v1.0.0
-        echo "image=$DOCKER_USERNAME/$DOCKER_REPOSITORY:v1.0.0" >> $GITHUB_ENV
+        docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
+        echo "image=$DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
