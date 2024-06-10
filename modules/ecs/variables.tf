@@ -5,3 +5,6 @@ variable "security_group" {
   type = string
 }
 
+variable "container_image" {
+  type = string
+}

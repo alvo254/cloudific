@@ -10,4 +10,5 @@ module "ecs" {
   source = "./modules/ecs"
   security_group = module.sg.security_group
   pub_sub1 = module.vpc.pub_sub1
+  container_image = "fitnesshero"
 }
