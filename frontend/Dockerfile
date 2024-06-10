@@ -1,7 +1,7 @@
 # Build stage
 FROM node:18-alpine as build-stage
 WORKDIR /frontend/
-COPY package*.json ./
+COPY package.json /frontend/
 RUN npm install
 COPY . .
 RUN npm run build
