@@ -1,4 +1,5 @@
 # Solutions architect document
+
 ## Table of Contents
 
 - Executive Summary
@@ -13,6 +14,7 @@
 - Maintenance and Monitoring
 
 ## 1. Executive Summary
+
 The SecureCloud Monitor project aims to enhance the security and monitoring capabilities of a cloud infrastructure on AWS, specifically addressing the need for an integrated solution that utilizes AWS-native services for a cost-effective, scalable, and robust observability framework. This initiative follows a recent DDoS attack that caused significant downtime, underlining the need for improved resilience and threat management.
 
 ## 2. Current Architecture Review
@@ -27,6 +29,7 @@ The SecureCloud Monitor project aims to enhance the security and monitoring capa
 - **AWS IAM**: Manages access control
   
 ## 3. Proposed Enhancements
+
 - **Amazon ECS (Elastic Container Service)**: Manages the containerized application.
 - **Amazon CloudWatch**: For monitoring and logging.
 - **AWS WAF (Web Application Firewall)**: For protection against DDoS attacks and IP filtering.
@@ -65,21 +68,22 @@ The SecureCloud Monitor project aims to enhance the security and monitoring capa
 - **Aviatrix Controller**: Centralized management of network security and operations.
 - **Aviatrix CoPilot**: Enhanced visibility and monitoring of network traffic.
 - **Aviatrix Security**: Advanced security controls including segmentation, firewall, and encryption.
-#### **Centralized Network Visibility**
+
+#### **Aviatrix features**
 
 Aviatrix provides a centralized controller that allows you to visualize and manage your entire multi-cloud network through a single pane of glass. This includes:
 
 - **Topology Visualization**: Interactive, real-time diagrams of your entire network architecture across multiple clouds. This helps in quickly understanding the network layout and the interconnections between different network entities.
 - **Traffic Flow Analysis**: Insights into traffic patterns and flows within the network. This is crucial for identifying bottlenecks, understanding traffic behavior, and ensuring efficient routing of data.
 
-####  **Advanced Analytics and Logging**
+#### **Advanced Analytics and Logging**
 
 Aviatrix enhances its monitoring capabilities by integrating with native cloud services like AWS CloudWatch and also by providing its own detailed logging mechanisms:
 
 - **FlowIQ**: Aviatrix FlowIQ provides deep analytics into network traffic flows. It uses data collected from across the network to provide visibility into traffic based on source, destination, protocols, ports, and more. This is valuable for security monitoring, compliance audits, and troubleshooting network issues.
 - **NetFlow Data**: Aviatrix gateways can export NetFlow data, which can be integrated with third-party SIEM (Security Information and Event Management) systems for advanced analysis and threat detection.
 
-####  **Alerting and Notifications**
+#### **Alerting and Notifications**
 
 Aviatrix allows you to set up custom alerts based on a wide range of metrics related to network and security:
 
