@@ -11,12 +11,6 @@ The cloudific Secure Cloud Monitor Monitor project is designed to enhance the se
 - **AWS WAF and Shield**: Services providing protection against DDoS attacks and other web exploits.
 - **AWS IAM**: Manages access to AWS services and resources securely.
 - **AWS VPC**: Isolates cloud resources with virtual networking environment.
-- **AWS ALB**: Automatically distributes incoming application traffic across multiple targets.
-- **Amazon GuardDuty**: Threat detection service that continuously monitors malicious or unauthorized behavior.
-- **AWS Config**: Service that enables you to assess, audit, and evaluate the configurations of AWS resources.
-- **AWS CloudTrail**: Service that enables governance, compliance, operational auditing, and risk auditing of your AWS account.
-- **AWS Systems Manager**: Helps you manage your AWS resources.
-- **Aviatrix**: Cloud network platform with enhanced security and multi-cloud network visibility.
 
 ## Prerequisites
 
