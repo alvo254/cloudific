@@ -11,12 +11,6 @@ The cloudific Secure Cloud Monitor Monitor project is designed to enhance the se
 - **AWS WAF and Shield**: Services providing protection against DDoS attacks and other web exploits.
 - **AWS IAM**: Manages access to AWS services and resources securely.
 - **AWS VPC**: Isolates cloud resources with virtual networking environment.
-- **AWS ALB**: Automatically distributes incoming application traffic across multiple targets.
-- **Amazon GuardDuty**: Threat detection service that continuously monitors malicious or unauthorized behavior.
-- **AWS Config**: Service that enables you to assess, audit, and evaluate the configurations of AWS resources.
-- **AWS CloudTrail**: Service that enables governance, compliance, operational auditing, and risk auditing of your AWS account.
-- **AWS Systems Manager**: Helps you manage your AWS resources.
-- **Aviatrix**: Cloud network platform with enhanced security and multi-cloud network visibility.
 
 ## Prerequisites
 
@@ -36,28 +30,42 @@ Before you begin, ensure you have the following:
 
 ## Setup Instructions
 
-1. **Clone the Repository**:
+1. **Steps to configure GitHub Secrets:**
 
-    `git clone https://github.com/alvo254/cloudific.git cd cloudific`
+- **Go to your GitHub repository**: Navigate to the GitHub repository where your project is hosted.
+- **Settings**: Click on the **Settings** tab at the top of the repository.
+- **Secrets**: From the sidebar, select **Secrets & variables** > **Actions**.
+- **New repository secret**: Click on **New repository secret** to add each of the following:
+  - `AWS_ACCESS_KEY_ID`: Your AWS access key ID.
+    - `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key.
+    - `DOCKER_PASSWORD`: Your docker password.
+    - `DOCKER_USERNAME`: Your docker username.
+    - Enter the **Name** and **Value** for each secret and click **Add secret**.
+    - These secrets can then be used in your GitHub Actions workflows without exposing them in your logs or repository files.
 
-2. **Initialize Terraform**: In the root directory and run the initialization command. This will download all necessary Terraform providers.
+2.**Clone the Repository**:
 
-    `terraform init`
+    `git clone https://github.com/alvo254/cloudific.git cd securecloud-monitor`
 
-3. **Configure AWS Credentials**: Make sure your AWS credentials are configured by setting up the AWS CLI or by setting environment variables:
+3.**Initialize Terraform**: Navigate to the Terraform directory and run the initialization command. This will download all necessary Terraform providers
+
+    `cd terraform terraform init`
+
+4.**Configure AWS Credentials**: Make sure your AWS credentials are configured by setting up the AWS CLI or by setting environment variables:
 
     `export AWS_ACCESS_KEY_ID="your-access-key-id" export AWS_SECRET_ACCESS_KEY="your-secret-access-key" export AWS_DEFAULT_REGION="us-east-1"`
 
-4. **Plan the Deployment**: Check the execution plan to see the resources Terraform plans to create:
+5.**Plan the Deployment**: Check the execution plan to see the resources Terraform plans to create:
 
     `terraform plan`
 
-5. **Apply the Configuration**: Deploy your infrastructure:
-    `terraform apply`
+6.**Apply the Configuration**: Deploy your infrastructure:
 
+    `terraform apply` or `terraform apply -auto-approve` to skip the prompt
+    
     When prompted, type `yes` to proceed with the creation of resources.
 
-6. **Verify Deployment**: After Terraform successfully applies the configuration, verify that all resources are created and functioning as expected in the AWS Management Console.
+7.**Verify Deployment**: After Terraform successfully applies the configuration, verify that all resources are created and functioning as expected in the AWS Management Console.
 
 ## CI/CD Integration
 
@@ -74,4 +82,4 @@ This project uses GitHub Actions for CI/CD. The workflows located in the `.githu
 
 ## Documentation and Training
 
-- Keep all project documentation updated within the `sad.md` solutions architect document.
+- Keep all project documentation updated within the `/docs` solutions architect document.
