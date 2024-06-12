@@ -45,7 +45,7 @@ Before you begin, ensure you have the following:
 
 2.**Clone the Repository**:
 
-    `git clone https://github.com/your-repository/securecloud-monitor.git cd securecloud-monitor`
+    `git clone https://github.com/alvo254/cloudific.git cd securecloud-monitor`
 
 3.**Initialize Terraform**: Navigate to the Terraform directory and run the initialization command. This will download all necessary Terraform providers
 
