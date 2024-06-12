@@ -36,6 +36,7 @@ resource "aws_iam_role_policy_attachment" "ecs_cloudwatch_logs_policy" {
   role       = aws_iam_role.ecs_exec_role.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
 }
+
 locals {
   container_definitions = jsonencode([
     {
