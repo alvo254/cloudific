@@ -3,3 +3,4 @@
 terraform.tfstate.backup
 terraform.tfstate
 frontend/node_modules
+.terraform.tfstate.lock.info
