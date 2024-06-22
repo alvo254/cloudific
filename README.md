@@ -23,9 +23,10 @@ Before you begin, ensure you have the following:
 ## Repository Structure
 
 - **/modules**: Contains all Terraform configuration files.
+- **frontend**: Has the frontend react application
 - **/.github/workflows**: Contains scripts for CI/CD integration and other automation tasks.
 - **/SAD.md**: Documentation files and additional resources.
-- **main.tf**: main file for infrastructure provisioning.
+- **main.tf**: Main file for infrastructure provisioning.
 - **provisioners.tf**: provisioning.
 
 ## Setup Instructions

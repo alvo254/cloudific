@@ -60,3 +60,16 @@ resource "aws_security_group" "cloudific" {
   }
 
 }
+
+resource "aws_security_group_rule" "alb_to_instance" {
+  type              = "egress"
+  from_port         = 3000
+  to_port           = 3000
+  protocol          = "tcp"
+  # cidr_blocks       = [aws_vpc.example.cidr_block]
+  # ipv6_cidr_blocks  = [aws_vpc.example.ipv6_cidr_block]
+  security_group_id = aws_security_group.cloudific.id
+  source_security_group_id = aws_security_group.cloudific.id
+ # destination_security_group_id = aws_security_group.cloudific.id
+}
+

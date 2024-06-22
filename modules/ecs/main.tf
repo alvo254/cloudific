@@ -73,8 +73,14 @@ resource "aws_ecs_service" "app_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = [var.pub_sub1]
+    subnets         = [var.pub_sub1, var.public_subnet2]
     security_groups = [var.security_group]
     assign_public_ip = true
+  }
+
+    load_balancer {
+    target_group_arn = var.cloudific_tg
+    container_name   = "app"
+    container_port   = 3000
   }
 }

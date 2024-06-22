@@ -8,3 +8,11 @@ variable "security_group" {
 # variable "container_image" {
 #   type = string
 # }
+
+variable "public_subnet2" {
+  type = string
+}
+
+variable "cloudific_tg" {
+  type = string
+}

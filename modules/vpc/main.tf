@@ -25,6 +25,21 @@ resource "aws_subnet" "public_subnet1" {
   }
 }
 
+//For loadbalancing only since you need 2 subnets for the alb
+resource "aws_subnet" "public_subnet2" {
+  vpc_id = aws_vpc.cloudific.id
+  cidr_block = var.public_subnet2
+  map_public_ip_on_launch = true
+  availability_zone = data.aws_availability_zones.available_zones.names[1]
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.cloudific.ipv6_cidr_block, 8, 3)
+  assign_ipv6_address_on_creation = true
+
+   tags = {
+    Name = "${var.project}-${var.env}-pub-sub-IPV6-expriment"
+  }
+}
+
+
 resource "aws_subnet" "private_subent1" {
   vpc_id = aws_vpc.cloudific.id
   cidr_block              = var.private_subnet
@@ -69,4 +84,9 @@ resource "aws_route_table" "pawsome" {
 resource "aws_route_table_association" "pawsome" {
   route_table_id = aws_route_table.pawsome.id
   subnet_id = aws_subnet.public_subnet1.id
+}
+
+resource "aws_route_table_association" "pawsome2" {
+  route_table_id = aws_route_table.pawsome.id
+  subnet_id = aws_subnet.public_subnet2.id
 }
