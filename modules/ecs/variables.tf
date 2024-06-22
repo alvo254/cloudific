@@ -12,3 +12,7 @@ variable "security_group" {
 variable "public_subnet2" {
   type = string
 }
+
+variable "cloudific_tg" {
+  type = string
+}

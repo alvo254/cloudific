@@ -12,6 +12,7 @@ module "ecs" {
   pub_sub1 = module.vpc.pub_sub1
   public_subnet2 = module.vpc.public_subnet2
   # container_image = "fitnesshero"
+  cloudific_tg = module.alb.cloudific_tg
 }
 
 module "alb" {
