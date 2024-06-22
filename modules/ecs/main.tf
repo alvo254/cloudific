@@ -52,6 +52,14 @@ locals {
           protocol = "tcp"
         }
       ]
+        logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = var.cloudwatch_lg_name
+          awslogs-region        = "us-east-1"  # Assuming you have a variable for region
+          awslogs-stream-prefix = "ecs"
+        }
+      }
     }
   ])
 }

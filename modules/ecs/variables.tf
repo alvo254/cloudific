@@ -16,3 +16,7 @@ variable "public_subnet2" {
 variable "cloudific_tg" {
   type = string
 }
+
+variable "cloudwatch_lg_name" {
+  type = string
+}

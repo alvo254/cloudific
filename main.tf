@@ -11,6 +11,7 @@ module "ecs" {
   security_group = module.sg.security_group
   pub_sub1 = module.vpc.pub_sub1
   public_subnet2 = module.vpc.public_subnet2
+  cloudwatch_lg_name = module.cloudwatch.cloudwatch_lg
   # container_image = "fitnesshero"
   cloudific_tg = module.alb.cloudific_tg
 }
@@ -21,4 +22,10 @@ module "alb" {
   vpc_id = module.vpc.vpc_id
   subnet1 = module.vpc.pub_sub1
   subnet2 = module.vpc.public_subnet2
+}
+
+module "cloudwatch" {
+  source = "./modules/cloudwatch"
+  cluster_name = module.ecs.Cluster_name
+  svc_name = module.ecs.svc_name
 }
