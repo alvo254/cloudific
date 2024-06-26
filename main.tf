@@ -28,4 +28,5 @@ module "cloudwatch" {
   source = "./modules/cloudwatch"
   cluster_name = module.ecs.Cluster_name
   svc_name = module.ecs.svc_name
+  cloudific_ecs_alert = module.sns.cloudific_alerts
 }

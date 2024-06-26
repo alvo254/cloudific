@@ -3,6 +3,33 @@ resource "aws_cloudwatch_log_group" "cloudific_lg" {
   retention_in_days = 30
 }
 
+resource "aws_cloudwatch_dashboard" "cloudific_dashboard" {
+  dashboard_name = "cloudific-Dashboard"
+
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["ECS/ContainerInsights", "CpuUtilized", "ClusterName", var.cluster_name],
+            [".", "MemoryUtilized", ".", "."]
+          ]
+          view    = "timeSeries"
+          stacked = false
+          region  = "us-east-1"
+          title   = "CPU and Memory Utilization"
+        }
+      }
+    ]
+  })
+}
+
 resource "aws_cloudwatch_metric_alarm" "cloudific_health_lg" {
   alarm_name          = "cloudific_health_alarm"
   comparison_operator = "LessThanThreshold"

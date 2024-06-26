@@ -5,3 +5,7 @@ variable "cluster_name" {
 variable "svc_name" {
   type = string
 }
+
+variable "cloudific_ecs_alert" {
+  type = string
+}
